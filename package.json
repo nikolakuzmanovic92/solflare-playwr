@@ -1,0 +1,17 @@
+{
+    "name": "playwright-solflare",
+    "version": "1.0.0",
+    "scripts": {
+        "test:api": "playwright test --config=playwright.config.ts --project=api",
+        "test:ui": "playwright test --config=playwright.config.ts --project=chrome",
+        "test:ui:headless": "playwright test --config=playwright.config.ts --project=chrome-headless",
+        "test:ui:firefox": "playwright test --config=playwright.config.ts --project=firefox",
+        "test": "npm run test:api && npm run test:ui:headless",
+        "test:headed": "npm run test:api && npm run test:ui"
+    },
+    "devDependencies": {
+        "@playwright/test": "^1.50.1",
+        "@types/node": "^22.13.4",
+        "typescript": "^5.7.3"
+    }
+}
