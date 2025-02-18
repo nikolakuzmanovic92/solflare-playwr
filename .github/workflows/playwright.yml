@@ -2,9 +2,9 @@ name: Playwright Tests
 
 on:
   push:
-    branches: [ main ]
+    branches: [master]
   pull_request:
-    branches: [ main ]
+    branches: [master]
 
 jobs:
   test:
@@ -19,17 +19,21 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: 20
+        cache: 'npm'
 
     - name: Install dependencies
-      run: npm install
+      run: npm ci  # Clean install for CI
 
     - name: Install Playwright browsers
       uses: microsoft/playwright-github-action@v1
       with:
         browsers: 'chromium,firefox'
 
-    - name: Run Playwright tests
-      run: npx playwright test
+    - name: Run API tests
+      run: npm run test:api
+
+    - name: Run UI tests
+      run: npm run test:ui:headless
 
     - name: Upload HTML report
       if: always()
